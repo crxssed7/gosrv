@@ -1,0 +1,11 @@
+{{ define "title" }}{{ .Person.Name }} - gosrv{{ end }}
+
+{{ define "content" }}
+    <h1>{{ .Person.Name }} ({{ .Person.Age }} yo)</h1>
+    <a href="/people">Back</a>
+    <a href="/people/{{ .Person.ID }}/edit">Edit</a>
+    <form action="/people/{{ .Person.ID }}" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit">Delete person</button>
+    </form>
+{{ end }}
