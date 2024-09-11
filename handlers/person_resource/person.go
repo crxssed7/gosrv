@@ -8,6 +8,7 @@ import (
 
 	"gosrv/database"
 	"gosrv/models"
+	"gosrv/templates"
 
 	"github.com/gorilla/mux"
 )
@@ -170,8 +171,8 @@ func notFound(w http.ResponseWriter) {
 }
 
 func render(w http.ResponseWriter, name string, data any) error {
-	templateName := fmt.Sprintf("templates/people/%s.html", name)
-	tmpl := template.Must(template.ParseFiles("templates/layouts/application.html", templateName))
+	templateName := fmt.Sprintf("people/%s.html", name)
+	tmpl := template.Must(template.ParseFS(templates.TEMPLATE_FILES, "layouts/application.html", templateName))
 	return tmpl.Execute(w, data)
 }
 
